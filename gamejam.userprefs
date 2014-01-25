@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Networking.cs">
+    <Files>
+      <File FileName="Assets\scripts\Networking.cs" Line="17" Column="18" />
+      <File FileName="Assets\scripts\Player.cs" Line="89" Column="20" />
+      <File FileName="Assets\scripts\GameModel.cs" Line="4" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
