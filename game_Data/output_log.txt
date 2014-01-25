@@ -15,33 +15,13 @@ Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Asse
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.041 seconds
+- Completed reload, in  0.039 seconds
 desktop: 1680x1050 60Hz; virtual: 3120x1050 at -1440,0
 <RI> Initializing input.
 <RI> Input initialized.
-UnloadTime: 0.224247 ms
+UnloadTime: 0.322879 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 161.
-Total: 0.351360 ms (FindLiveObjects: 0.008993 ms CreateObjectMapping: 0.005096 ms MarkObjects: 0.078546 ms  DeleteObjects: 0.002997 ms)
-
-The file 'F:/Developement/Unity Projects/gamejam/game_Data/resources.assets' is corrupted! Remove it and launch unity again!
-[Position out of bounds! 5638684 > 5638680]
- 
-(Filename:  Line: 276)
-
-The file 'F:/Developement/Unity Projects/gamejam/game_Data/resources.assets' is corrupted! Remove it and launch unity again!
-[Position out of bounds! 5638596 > 5638592]
- 
-(Filename:  Line: 276)
-
-The file 'F:/Developement/Unity Projects/gamejam/game_Data/resources.assets' is corrupted! Remove it and launch unity again!
-[Position out of bounds! 5638708 > 5638704]
- 
-(Filename:  Line: 269)
-
-The file 'F:/Developement/Unity Projects/gamejam/game_Data/resources.assets' is corrupted! Remove it and launch unity again!
-[Position out of bounds! 5638708 > 5638704]
- 
-(Filename:  Line: 276)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 147.
+Total: 0.394830 ms (FindLiveObjects: 0.008993 ms CreateObjectMapping: 0.008394 ms MarkObjects: 0.109725 ms  DeleteObjects: 0.004197 ms)
 

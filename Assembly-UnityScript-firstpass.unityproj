@@ -47,7 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Particles\Legacy Particles\TimedObjectDestructor.js" />
+     <None Include="Assets\JMO Assets\MatCap Shaders\Shaders\MatCap_TextureMult_Bumped.shader" />
+     <None Include="Assets\JMO Assets\MatCap Shaders\Shaders\MatCap_Lit.shader" />
+     <None Include="Assets\JMO Assets\MatCap Shaders\Shaders\MatCap_Plain_Bumped.shader" />
+     <None Include="Assets\JMO Assets\MatCap Shaders\Shaders\MatCap_Plain_AdditiveZ.shader" />
      <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
+     <None Include="Assets\JMO Assets\MatCap Shaders\Shaders\MatCap_TextureMult.shader" />
+     <None Include="Assets\JMO Assets\MatCap Shaders\Shaders\MatCap_TextureAdd.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
