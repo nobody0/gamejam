@@ -9,8 +9,8 @@ public class Networking : MonoBehaviour
     private string gameTypeName = "GGJ14: since idea";
     private int Port = 25723;
 
-    private float gameStart;
-    private float waitForServer = 3;
+	private bool showCharacterSelection = false;
+
 
     void Awake()
     {
@@ -20,7 +20,7 @@ public class Networking : MonoBehaviour
 
     void Start()
     {
-        gameStart = Time.time;
+
     }
 
     void Update()
@@ -42,7 +42,6 @@ public class Networking : MonoBehaviour
                 if (hostData[i].connectedPlayers == 1)
                 {
                     Network.Connect(hostData[i]);
-                    GameModel.PlayerId = 1; //sommer
                     return;
                 }
             }
@@ -55,28 +54,44 @@ public class Networking : MonoBehaviour
         MasterServer.RegisterHost(gameTypeName, "MyGame", "");
     }
 
+	void startServer() {
+		showCharacterSelection = false;
+		Network.InitializeServer(1, Port, !Network.HavePublicAddress());
+	}
+
     void OnGUI()
     {
-        if (Network.peerType == NetworkPeerType.Disconnected)
-        {
-            //IP input and conenct to server
-            GUI.Label(new Rect(250, 50, 150, 25), "Input server IP");
-            IP = GUI.TextField(new Rect(400, 50, 100, 25), IP);
-
-			if (GUI.Button(new Rect(50, 50, 150, 25), "Connect to Server")) {
-				Network.Connect(IP, Port);
-				GameModel.PlayerId = 1; //sommer
+		if (showCharacterSelection) {
+			GUI.Label(new Rect(50, 50, 150, 25), "Select your Character");
+			if (GUI.Button(new Rect(50, 100, 70, 25), "Irene")) {
+				GameModel.PlayerId = GameModel.Characters.Summer; //sommer
+				startServer();
 			}
-
-            //own ip and start server
-            GUI.Label(new Rect(250, 100, 150, 25), "Your local network IP");
-            GUI.TextField(new Rect(400, 100, 100, 25), Network.player.ipAddress);
-
-			if (GUI.Button(new Rect(50, 100, 100, 25), "Start Server")) {
-				Network.InitializeServer(1, Port, !Network.HavePublicAddress());
-				GameModel.PlayerId = 2; //winter
+			if (GUI.Button(new Rect(150, 100, 70, 25), "Zack")) {
+				GameModel.PlayerId = GameModel.Characters.Winter; //winter
+				startServer();
 			}
-        }
+			if (GUI.Button(new Rect(150, 200, 70, 25), "cancel")) {
+				showCharacterSelection = false;
+			}
+		} else {
+	        if (Network.peerType == NetworkPeerType.Disconnected)
+	        {
+	            //IP input and conenct to server
+	            GUI.Label(new Rect(250, 50, 150, 25), "Input server IP");
+	            IP = GUI.TextField(new Rect(400, 50, 100, 25), IP);
+
+				if (GUI.Button(new Rect(50, 50, 150, 25), "Connect to Server")) {
+					Network.Connect(IP, Port);
+				}
+
+	            //own ip and start server
+
+				if (GUI.Button(new Rect(50, 100, 100, 25), "Start Server")) {
+					showCharacterSelection = true;
+				}
+			}
+		}
 
         if (Network.peerType == NetworkPeerType.Connecting)
         {
@@ -86,6 +101,11 @@ public class Networking : MonoBehaviour
         if (Network.isServer)
         {
             GUI.Label(new Rect(50, 100, 200, 25), "Waiting for client to Connect");
+
+			
+			GUI.Label(new Rect(50, 50, 150, 25), "Your local network IP");
+			GUI.TextField(new Rect(200, 50, 100, 25), Network.player.ipAddress);
+
             if (GUI.Button(new Rect(50, 125, 100, 25), "Stop Server")) {
                 Network.Disconnect();
             }

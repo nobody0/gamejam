@@ -3,6 +3,8 @@ using System.Collections;
 
 public static class GameModel {
 
-	public static int PlayerId;
+	public static Characters PlayerId;
+
+	public enum Characters {Summer = 1, Winter = 2};
 	
 }

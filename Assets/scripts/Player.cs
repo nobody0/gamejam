@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [RequireComponent (typeof (NetworkView))]
 [RequireComponent (typeof (CharacterController))]
 public class Player : MonoBehaviour {
-	public int playerId;
+	public GameModel.Characters playerId;
 	
 	private CharacterController controller;
 	
