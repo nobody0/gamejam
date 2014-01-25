@@ -15,13 +15,13 @@ Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Asse
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.039 seconds
+- Completed reload, in  0.041 seconds
 desktop: 1680x1050 60Hz; virtual: 3120x1050 at -1440,0
 <RI> Initializing input.
 <RI> Input initialized.
-UnloadTime: 0.237138 ms
+UnloadTime: 0.263220 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 113.
-Total: 0.363352 ms (FindLiveObjects: 0.007195 ms CreateObjectMapping: 0.005396 ms MarkObjects: 0.088739 ms  DeleteObjects: 0.002698 ms)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 114.
+Total: 0.398728 ms (FindLiveObjects: 0.008694 ms CreateObjectMapping: 0.006595 ms MarkObjects: 0.087240 ms  DeleteObjects: 0.003597 ms)
 

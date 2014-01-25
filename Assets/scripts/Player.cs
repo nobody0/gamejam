@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 	private float jumpVelocity = 0;
 
 	private int lineIndex;
-	private float[] Lines = {-2, 2};
+	private float[] Lines = {2, 9, 16};
 	
 	private float lastSync = 0.0f;
 	private Vector3 lastSyncedPos;
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	
 	private float ipDeltaTime = 0.1f;
 	
-	public Vector3 cameraOffset = new Vector3(-4, 3, -7);
+	private Vector3 cameraOffset = new Vector3(-6, 6, -6);
 	private float cameraFollow =  10;
 	private float cameraFollowJump =  5;
 	//public Vector3 cameraOffsetRot = new Vector3(20,30,5);
@@ -151,6 +151,7 @@ public class Player : MonoBehaviour {
 		
 		newCameraPosition.x = interpolate(newCameraPosition.x, cameraOffset.x + transform.position.x, followX);
 		newCameraPosition.y = interpolate(newCameraPosition.y, cameraOffset.y + transform.position.y, followY);
+		newCameraPosition.z = cameraOffset.z;
 
 		Camera.main.transform.position = newCameraPosition;
 	}
