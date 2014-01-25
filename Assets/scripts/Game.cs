@@ -5,9 +5,12 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+		enableLevel ();
+
 		if (Network.isServer || Network.isClient) {
 			GameObject PlayerPref = (GameObject)Resources.Load("Player");
-			
+
 			GameObject player = (GameObject)Network.Instantiate(PlayerPref, new Vector3(2*(2-GameModel.PlayerId),0,0), Quaternion.identity, 0);
 			
 			Player playerScript = player.GetComponent<Player>();
@@ -34,5 +37,15 @@ public class Game : MonoBehaviour {
 
 	void OnGUI() {
 		GUI.Button(new Rect(100, 100, 100, 25), " " + GameModel.PlayerId);
+	}
+
+	void enableLevel () {
+		GameObject level;
+		if (GameModel.PlayerId == 1) {
+			level = GameObject.Find("Level_Sommer");
+		} else {
+			level = GameObject.Find("Level_Winter");
+		}
+		level.SetActive(true);
 	}
 }
