@@ -15,7 +15,33 @@ Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Asse
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.041 seconds
+- Completed reload, in  0.039 seconds
 desktop: 1680x1050 60Hz; virtual: 3120x1050 at -1440,0
 <RI> Initializing input.
 <RI> Input initialized.
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174380 > 174376]
+ 
+(Filename:  Line: 276)
+
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174428 > 174424]
+ 
+(Filename:  Line: 276)
+
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174452 > 174448]
+ 
+(Filename:  Line: 269)
+
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174452 > 174448]
+ 
+(Filename:  Line: 276)
+
+UnloadTime: 0.232941 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2360.
+Total: 0.751587 ms (FindLiveObjects: 0.061158 ms CreateObjectMapping: 0.018287 ms MarkObjects: 0.166986 ms  DeleteObjects: 0.004496 ms)
+
