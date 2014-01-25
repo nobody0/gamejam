@@ -19,9 +19,29 @@ Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-UnityS
 desktop: 1680x1050 60Hz; virtual: 3120x1050 at -1440,0
 <RI> Initializing input.
 <RI> Input initialized.
-UnloadTime: 0.237138 ms
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174380 > 174376]
+ 
+(Filename:  Line: 276)
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 113.
-Total: 0.363352 ms (FindLiveObjects: 0.007195 ms CreateObjectMapping: 0.005396 ms MarkObjects: 0.088739 ms  DeleteObjects: 0.002698 ms)
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174428 > 174424]
+ 
+(Filename:  Line: 276)
+
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174452 > 174448]
+ 
+(Filename:  Line: 269)
+
+The file 'F:/Developement/Unity Projects/gamejam/game_Data/level1' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 174452 > 174448]
+ 
+(Filename:  Line: 276)
+
+UnloadTime: 0.232941 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2360.
+Total: 0.751587 ms (FindLiveObjects: 0.061158 ms CreateObjectMapping: 0.018287 ms MarkObjects: 0.166986 ms  DeleteObjects: 0.004496 ms)
 

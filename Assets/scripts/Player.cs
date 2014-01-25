@@ -10,12 +10,10 @@ public class Player : MonoBehaviour {
 	private CharacterController controller;
 	
 	private float gravity = 10;
-	private float speed = 5;
-	private float jumpSpeed = 5;
+	public float speed = 5;
+	public float jumpSpeed = 5;
 	private float jumpVelocity = 0;
-
-	private int lineIndex;
-	private float[] Lines = {-2, 2};
+	public float waterfloating = 8;
 	
 	private float lastSync = 0.0f;
 	private Vector3 lastSyncedPos;
@@ -24,13 +22,23 @@ public class Player : MonoBehaviour {
 	
 	private float ipDeltaTime = 0.1f;
 	
-	public Vector3 cameraOffset = new Vector3(-4, 3, -7);
+	public Vector3 cameraOffset = new Vector3(-10, 10, -10);
 	private float cameraFollow =  10;
 	private float cameraFollowJump =  5;
-	//public Vector3 cameraOffsetRot = new Vector3(20,30,5);
+	public Vector3 cameraRot = new Vector3(35,40,0);
 
 	private List<Vector3> positions = new List<Vector3>();
 	private List<float> times = new List<float>();
+
+	private bool inWater;
+	public bool isInWater {
+		set {
+			this.inWater = value;
+		}
+		get {
+			return this.inWater;
+		}
+	}
 	
 	void Start () {
 		controller = GetComponent<CharacterController>();
@@ -47,41 +55,31 @@ public class Player : MonoBehaviour {
 			Vector3 moveDirection = Vector3.zero;
 			// save old position!
 			
-			if (controller.isGrounded) {
+			if (controller.isGrounded) { // on ground
 				jumpVelocity = 0;
 				if (Input.GetButton("Jump")) {
 					jumpVelocity = jumpSpeed;
 				}
 			}
+			
+			if (this.inWater) { // on water
+				if (jumpVelocity < -15)
+					jumpVelocity = jumpVelocity / 2;
+
+				if (Input.GetButton("Jump")) {
+					jumpVelocity = jumpSpeed;
+				}
+				
+				if (jumpVelocity < 0)
+				jumpVelocity += waterfloating * Time.deltaTime;
+			}
+
 			jumpVelocity -= gravity * Time.deltaTime;
+
 			moveDirection.y = jumpVelocity * Time.deltaTime;
 			
 			moveDirection.x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
-
-			if (Input.GetButtonDown("Vertical")) {
-				if (Input.GetAxis("Vertical") > 0) {
-					lineIndex ++;
-					if (lineIndex >= Lines.Length) {
-						lineIndex = Lines.Length - 1;
-					}
-				} else {
-					lineIndex--;
-					if (lineIndex < 0) {
-						lineIndex = 0;
-					}
-				}
-			}
-
-			float diffZ = Lines[lineIndex] - transform.position.z;
-
-			moveDirection.z = speed * Time.deltaTime;
-
-			if (diffZ < 0) {
-				moveDirection.z *= -1;
-			}
-			if (moveDirection.z / diffZ > 1) {
-				moveDirection.z = diffZ;
-			}
+			moveDirection.z = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 
 			controller.Move(moveDirection);
 
@@ -135,6 +133,7 @@ public class Player : MonoBehaviour {
 		Vector3 newCameraPosition = Camera.main.transform.position;
 		float followX = cameraFollow;
 		float followY = cameraFollow;
+		float followZ = cameraFollow;
 
 		followX = followX * Time.deltaTime;
 		if (followX > 1) {
@@ -148,11 +147,18 @@ public class Player : MonoBehaviour {
 		if (followY > 1) {
 			followY = 1;
 		}
+
+		followZ = followZ * Time.deltaTime;
+		if (followZ > 1) {
+			followZ = 1;
+		}
 		
 		newCameraPosition.x = interpolate(newCameraPosition.x, cameraOffset.x + transform.position.x, followX);
 		newCameraPosition.y = interpolate(newCameraPosition.y, cameraOffset.y + transform.position.y, followY);
+		newCameraPosition.z = interpolate(newCameraPosition.z, cameraOffset.z + transform.position.z, followZ);
 
 		Camera.main.transform.position = newCameraPosition;
+		Camera.main.transform.rotation = Quaternion.Euler(cameraRot);
 	}
 	
 	[RPC]
