@@ -46,7 +46,7 @@ public class changeSkyboxAndFog : MonoBehaviour {
             enabled = false;
         }
 
-        if (GameModel.PlayerId == GameModel.Characters.Summer)
+        if (GameModel.PlayerId == GameModel.Characters.Winter)
         {
             RenderSettings.skybox = skyboxWinter;
 
