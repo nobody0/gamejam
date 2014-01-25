@@ -12,11 +12,15 @@ public class changeSkyboxAndFog : MonoBehaviour {
     public float fogStartDistanceSummer;
     public FogMode fogModeSummer;
 
+    public Color ambientLightSummer;
+
     public Color fogColorWinter;
     public float fogDensityWinter;
     public float fogEndDistanceWinter;
     public float fogStartDistanceWinter;
     public FogMode fogModeWinter;
+
+    public Color ambientLightWinter;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +41,8 @@ public class changeSkyboxAndFog : MonoBehaviour {
             RenderSettings.fogStartDistance = fogStartDistanceSummer;
             RenderSettings.fogMode = fogModeSummer;
 
+            RenderSettings.ambientLight = ambientLightSummer;
+
             enabled = false;
         }
 
@@ -50,6 +56,8 @@ public class changeSkyboxAndFog : MonoBehaviour {
             RenderSettings.fogEndDistance = fogEndDistanceWinter;
             RenderSettings.fogStartDistance = fogStartDistanceWinter;
             RenderSettings.fogMode = fogModeWinter;
+
+            RenderSettings.ambientLight = ambientLightWinter;
 
             enabled = false;
         }
