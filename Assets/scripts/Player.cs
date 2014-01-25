@@ -162,6 +162,7 @@ public class Player : MonoBehaviour {
 		newCameraPosition.z = interpolate(newCameraPosition.z, cameraOffset.z + transform.position.z, followZ);
 
 		Camera.main.transform.position = newCameraPosition;
+		Camera.main.transform.rotation = Quaternion.Euler(cameraRot);
 	}
 	
 	[RPC]
