@@ -4,6 +4,7 @@ using System.Collections;
 public class Networking : MonoBehaviour {
 	
 	public string IP = "127.0.0.1";
+	//public string IP = "10.10.71.25";
 	public int Port = 25001;
 
 	// Use this for initialization

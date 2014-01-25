@@ -1,7 +1,7 @@
 Initialize engine version: 4.3.3f1 (c8ca9b6b9936)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [aticfx32.dll 8.17.10.1140]
+    Version:  Direct3D 9.0c [aticfx64.dll 8.17.10.1140]
     Renderer: AMD Radeon HD 7900 Series
     Vendor:   ATI
     VRAM:     3047 MB (via DXGI)
@@ -11,23 +11,13 @@ Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Unit
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.037 seconds
+- Completed reload, in  0.047 seconds
 desktop: 1680x1050 60Hz; virtual: 3120x1050 at -1440,0
 <RI> Initializing input.
 <RI> Input initialized.
-UnloadTime: 16.700418 ms
+UnloadTime: 3.345420 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 112.
-Total: 0.496461 ms (FindLiveObjects: 0.007494 ms CreateObjectMapping: 0.006295 ms MarkObjects: 0.101031 ms  DeleteObjects: 0.004796 ms)
-
-The server has disconnected from the client. Most likely the server has shut down.
- 
-(Filename:  Line: 740)
-
-UnloadTime: 0.392432 ms
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 106.
-Total: 0.779768 ms (FindLiveObjects: 0.007195 ms CreateObjectMapping: 0.008694 ms MarkObjects: 0.125614 ms  DeleteObjects: 0.018287 ms)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 136.
+Total: 1.227663 ms (FindLiveObjects: 0.016488 ms CreateObjectMapping: 0.010792 ms MarkObjects: 0.135207 ms  DeleteObjects: 0.007195 ms)
 

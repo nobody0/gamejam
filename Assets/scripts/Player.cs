@@ -9,21 +9,26 @@ public class Player : MonoBehaviour {
 	
 	private CharacterController controller;
 	
-	public float gravity = 10;
-	public float speed = 5;
-	public float jumpSpeed = 5;
+	private float gravity = 10;
+	private float speed = 5;
+	private float jumpSpeed = 5;
 	private float jumpVelocity = 0;
 
-	public int lineIndex;
-	public float[] Lines;
+	private int lineIndex;
+	private float[] Lines = {-2, 2};
 	
 	private float lastSync = 0.0f;
 	private Vector3 lastSyncedPos;
-	public float maxLastSync =  0.018f;
+	private float maxLastSync =  0.018f;
 	private float lastMessage;
 	
-	public float ipDeltaTime = 0.1f;
+	private float ipDeltaTime = 0.1f;
 	
+	private Vector3 cameraOffset = new Vector3(-4, 3, -7);
+	private float cameraFollow =  10;
+	private float cameraFollowJump =  5;
+	//public Vector3 cameraOffsetRot = new Vector3(20,30,5);
+
 	private List<Vector3> positions = new List<Vector3>();
 	private List<float> times = new List<float>();
 	
@@ -80,6 +85,8 @@ public class Player : MonoBehaviour {
 
 			controller.Move(moveDirection);
 
+			updateCamera();
+
 			// sync to the other player
 			lastSync += Time.deltaTime;	
 			if (lastSync >= maxLastSync && !lastSyncedPos.Equals(transform.position)) {
@@ -122,6 +129,30 @@ public class Player : MonoBehaviour {
 	
 	float interpolate (float x1, float x2, float t) {
 		return x2 * t + x1 * (1 - t);
+	}
+
+	void updateCamera () {
+		Vector3 newCameraPosition = Camera.main.transform.position;
+		float followX = cameraFollow;
+		float followY = cameraFollow;
+
+		followX = followX * Time.deltaTime;
+		if (followX > 1) {
+			followX = 1;
+		}
+
+		if (!controller.isGrounded) {
+			followY = cameraFollowJump;
+		}
+		followY = followY * Time.deltaTime;
+		if (followY > 1) {
+			followY = 1;
+		}
+		
+		newCameraPosition.x = interpolate(newCameraPosition.x, cameraOffset.x + transform.position.x, followX);
+		newCameraPosition.y = interpolate(newCameraPosition.y, cameraOffset.y + transform.position.y, followY);
+
+		Camera.main.transform.position = newCameraPosition;
 	}
 	
 	[RPC]

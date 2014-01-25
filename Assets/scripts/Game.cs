@@ -12,6 +12,8 @@ public class Game : MonoBehaviour {
 			
 			Player playerScript = player.GetComponent<Player>();
 			playerScript.playerId = GameModel.PlayerId;
+
+			//player.AddComponent<ThirdPersonCamera>();
 			
 			//enabled = false;
 		}
