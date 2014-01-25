@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
 
 	private bool inWater;
 
-	private bool vertical = true;
+	private bool checkSlope = true;
 
 	public bool isInWater {
 		set {
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour {
 		if (GameModel.PlayerId == this.playerId) { // move our player
 			Vector3 moveDirection = Vector3.zero;
 			// save old position!
-			
+			checkSlope = true;
 			if (controller.isGrounded) { // on ground
 				jumpVelocity = jumpVelocity * (1- Time.deltaTime);
 
@@ -170,8 +170,6 @@ public class Player : MonoBehaviour {
 		Camera.main.transform.rotation = Quaternion.Euler(cameraRot);
 	}
 
-	private float lastcol = 0;
-
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		GameObject block = hit.gameObject;
 		if (block.name.Equals("Eisblock_")) {
@@ -179,23 +177,22 @@ public class Player : MonoBehaviour {
 			if (!iceblock.inPlace) {
 				block.transform.position = block.transform.position + (-hit.normal*speed*Time.deltaTime/2);
 			}
+		} else {
+			slider(hit.normal);
 		}
-		slider(hit.normal);
 
 	}
 
 	void slider (Vector3 colliderNormal) {
-		float curT = Time.time;
-		if (lastcol + 0.1 < curT && GameModel.PlayerId == this.playerId) {
-			
-			if (Mathf.Abs(colliderNormal.x) + Mathf.Abs(colliderNormal.z) > 0.12) {
+		if (GameModel.PlayerId == this.playerId &&  checkSlope) {
+			checkSlope = false;
+			if (Mathf.Abs(colliderNormal.x) + Mathf.Abs(colliderNormal.z) > 0.2) {
 				
 				Vector3 slidingDirection = Vector3.zero;
 				slidingDirection.x = colliderNormal.x*Time.deltaTime * speed;
 				slidingDirection.z =  colliderNormal.z*Time.deltaTime * speed;
 				
 				controller.Move(slidingDirection);
-				slidingDirection = Vector3.zero;
 				//Debug.Log(hit.normal + " " + slidingDirection);
 				//controller.Move(new Vector3(hit.normal.x*Time.deltaTime * speed/2, 0, hit.normal.x*Time.deltaTime * speed/2));
 			} 
