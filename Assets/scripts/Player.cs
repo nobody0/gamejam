@@ -24,10 +24,10 @@ public class Player : MonoBehaviour {
 	
 	private float ipDeltaTime = 0.1f;
 	
-	private Vector3 cameraOffset = new Vector3(-6, 6, -6);
+	public Vector3 cameraOffset = new Vector3(-10, 10, -10);
 	private float cameraFollow =  10;
 	private float cameraFollowJump =  5;
-	//public Vector3 cameraOffsetRot = new Vector3(20,30,5);
+	public Vector3 cameraRot = new Vector3(35,40,0);
 
 	private List<Vector3> positions = new List<Vector3>();
 	private List<float> times = new List<float>();
@@ -57,7 +57,9 @@ public class Player : MonoBehaviour {
 			moveDirection.y = jumpVelocity * Time.deltaTime;
 			
 			moveDirection.x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+			moveDirection.z = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 
+			/*
 			if (Input.GetButtonDown("Vertical")) {
 				if (Input.GetAxis("Vertical") > 0) {
 					lineIndex ++;
@@ -82,7 +84,7 @@ public class Player : MonoBehaviour {
 			if (moveDirection.z / diffZ > 1) {
 				moveDirection.z = diffZ;
 			}
-
+			//*/
 			controller.Move(moveDirection);
 
 			updateCamera();
@@ -135,6 +137,7 @@ public class Player : MonoBehaviour {
 		Vector3 newCameraPosition = Camera.main.transform.position;
 		float followX = cameraFollow;
 		float followY = cameraFollow;
+		float followZ = cameraFollow;
 
 		followX = followX * Time.deltaTime;
 		if (followX > 1) {
@@ -148,10 +151,15 @@ public class Player : MonoBehaviour {
 		if (followY > 1) {
 			followY = 1;
 		}
+
+		followZ = followZ * Time.deltaTime;
+		if (followZ > 1) {
+			followZ = 1;
+		}
 		
 		newCameraPosition.x = interpolate(newCameraPosition.x, cameraOffset.x + transform.position.x, followX);
 		newCameraPosition.y = interpolate(newCameraPosition.y, cameraOffset.y + transform.position.y, followY);
-		newCameraPosition.z = cameraOffset.z;
+		newCameraPosition.z = interpolate(newCameraPosition.z, cameraOffset.z + transform.position.z, followZ);
 
 		Camera.main.transform.position = newCameraPosition;
 	}
