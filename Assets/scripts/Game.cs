@@ -5,6 +5,7 @@ using System.Collections;
 public class Game : MonoBehaviour {
 
 	private bool started = false;
+	public DaylightWater risingDaylightWater;
 
 	// Use this for initialization
 	void Start () {
@@ -81,5 +82,16 @@ public class Game : MonoBehaviour {
 	[RPC]
 	public void setClientPlayerId(int playerId) {
 		GameModel.PlayerId = (GameModel.Characters) playerId;
+	}
+
+	[RPC]
+	public void riseDayLightWater() {
+		risingDaylightWater.rise = true;
+	}
+
+	public void onIceblockInplace(int iceblockId) {
+		if (iceblockId == 1) {
+			networkView.RPC("riseDayLightWater", RPCMode.Others);
+		}
 	}
 }

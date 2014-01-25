@@ -124,6 +124,10 @@ public class Networking : MonoBehaviour
 
     void startGame()
     { // load level, reset scores
+		GameModel.score = 0;
+		GameModel.deathCounter = 0;
+		GameModel.lastCheckpoint = Vector3.zero;
+
         Application.LoadLevel("Level1");
     }
 

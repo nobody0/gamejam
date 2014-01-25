@@ -31,6 +31,9 @@ public class Player : MonoBehaviour {
 	private List<float> times = new List<float>();
 
 	private bool inWater;
+
+	private bool vertical = true;
+
 	public bool isInWater {
 		set {
 			this.inWater = value;
@@ -43,6 +46,8 @@ public class Player : MonoBehaviour {
 	void Start () {
 		controller = GetComponent<CharacterController>();
 		lastSyncedPos = transform.position;
+
+		GameModel.lastCheckpoint = transform.position;
 	}
 	
 	void Update () {
@@ -56,7 +61,8 @@ public class Player : MonoBehaviour {
 			// save old position!
 			
 			if (controller.isGrounded) { // on ground
-				jumpVelocity = 0;
+				jumpVelocity = jumpVelocity * (1- Time.deltaTime);
+
 				if (Input.GetButton("Jump")) {
 					jumpVelocity = jumpSpeed;
 				}
@@ -64,7 +70,7 @@ public class Player : MonoBehaviour {
 			
 			if (this.inWater) { // on water
 				if (jumpVelocity < -15)
-					jumpVelocity = jumpVelocity / 2;
+					jumpVelocity = jumpVelocity/2;
 
 				if (Input.GetButton("Jump")) {
 					jumpVelocity = jumpSpeed;
@@ -81,8 +87,11 @@ public class Player : MonoBehaviour {
 			moveDirection.x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
 			moveDirection.z = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 
+			//if (!slidingDirection.Equals(Vector3.zero))
+			//	Debug.Log("real move " + slidingDirection);
+			//controller.Move(slidingDirection);
 			controller.Move(moveDirection);
-
+			//slidingDirection = Vector3.zero;
 			updateCamera();
 
 			// sync to the other player
@@ -161,16 +170,51 @@ public class Player : MonoBehaviour {
 		Camera.main.transform.rotation = Quaternion.Euler(cameraRot);
 	}
 
+	private float lastcol = 0;
+
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		GameObject block = hit.gameObject;
-		if (block.name.Equals("Eisblock_")){
-			Debug.Log(hit.normal);
+		if (block.name.Equals("Eisblock_")) {
 			IceBlock iceblock = block.GetComponent<IceBlock>();
 			if (!iceblock.inPlace) {
 				block.transform.position = block.transform.position + (-hit.normal*speed*Time.deltaTime/2);
-				Debug.Log(block.transform.position);
 			}
 		}
+		slider(hit.normal);
+
+	}
+
+	void slider (Vector3 colliderNormal) {
+		float curT = Time.time;
+		if (lastcol + 0.1 < curT && GameModel.PlayerId == this.playerId) {
+			
+			if (Mathf.Abs(colliderNormal.x) + Mathf.Abs(colliderNormal.z) > 0.12) {
+				
+				Vector3 slidingDirection = Vector3.zero;
+				slidingDirection.x = colliderNormal.x*Time.deltaTime * speed;
+				slidingDirection.z =  colliderNormal.z*Time.deltaTime * speed;
+				
+				controller.Move(slidingDirection);
+				slidingDirection = Vector3.zero;
+				//Debug.Log(hit.normal + " " + slidingDirection);
+				//controller.Move(new Vector3(hit.normal.x*Time.deltaTime * speed/2, 0, hit.normal.x*Time.deltaTime * speed/2));
+			} 
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.name == "GiantCubeOfDeath") {
+			die ();
+		}
+
+		if (other.name == "CheckPoint") {
+			GameModel.lastCheckpoint = other.transform.position;
+		}
+	}
+
+	void die() {
+		GameModel.deathCounter++;
+		transform.position = GameModel.lastCheckpoint;
 	}
 	
 	[RPC]
