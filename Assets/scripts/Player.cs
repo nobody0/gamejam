@@ -10,10 +10,10 @@ public class Player : MonoBehaviour {
 	private CharacterController controller;
 	
 	private float gravity = 10;
-	public float speed = 5;
-	public float jumpSpeed = 5;
+	private float speed = 5;
+	private float jumpSpeed = 5;
 	private float jumpVelocity = 0;
-	public float waterfloating = 8;
+	private float waterfloating = 8;
 	
 	private float lastSync = 0.0f;
 	private Vector3 lastSyncedPos;
@@ -22,10 +22,10 @@ public class Player : MonoBehaviour {
 	
 	private float ipDeltaTime = 0.1f;
 	
-	public Vector3 cameraOffset = new Vector3(-10, 10, -10);
+	private Vector3 cameraOffset = new Vector3(-10, 10, -10);
 	private float cameraFollow =  10;
 	private float cameraFollowJump =  5;
-	public Vector3 cameraRot = new Vector3(35,40,0);
+	private Vector3 cameraRot = new Vector3(35,40,0);
 
 	private List<Vector3> positions = new List<Vector3>();
 	private List<float> times = new List<float>();
@@ -159,6 +159,18 @@ public class Player : MonoBehaviour {
 
 		Camera.main.transform.position = newCameraPosition;
 		Camera.main.transform.rotation = Quaternion.Euler(cameraRot);
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		GameObject block = hit.gameObject;
+		if (block.name.Equals("Eisblock_")){
+			Debug.Log(hit.normal);
+			IceBlock iceblock = block.GetComponent<IceBlock>();
+			if (!iceblock.inPlace) {
+				block.transform.position = block.transform.position + (-hit.normal*speed*Time.deltaTime/2);
+				Debug.Log(block.transform.position);
+			}
+		}
 	}
 	
 	[RPC]
