@@ -84,8 +84,8 @@ public class Player : MonoBehaviour {
 
 			moveDirection.y = jumpVelocity * Time.deltaTime;
 			
-			moveDirection.x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
-			moveDirection.z = speed * Input.GetAxis("Vertical") * Time.deltaTime;
+			moveDirection.x = speed * Input.GetAxis("Vertical") * Time.deltaTime;
+			moveDirection.z = speed * (-Input.GetAxis("Horizontal")) * Time.deltaTime;
 
 			//if (!slidingDirection.Equals(Vector3.zero))
 			//	Debug.Log("real move " + slidingDirection);
