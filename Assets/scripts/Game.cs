@@ -5,13 +5,14 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		enableLevel ();
 
 		if (Network.isServer || Network.isClient) {
+			
+			//enableLevel ();
+
 			GameObject PlayerPref = (GameObject)Resources.Load("Player");
 
-			GameObject player = (GameObject)Network.Instantiate(PlayerPref, new Vector3(2*(2-GameModel.PlayerId),0,0), Quaternion.identity, 0);
+			GameObject player = (GameObject)Network.Instantiate(PlayerPref, new Vector3(0,0,0), Quaternion.identity, 0);
 			
 			Player playerScript = player.GetComponent<Player>();
 			playerScript.playerId = GameModel.PlayerId;
@@ -46,6 +47,7 @@ public class Game : MonoBehaviour {
 		} else {
 			level = GameObject.Find("Level_Winter");
 		}
+		if (level)
 		level.SetActive(true);
 	}
 }

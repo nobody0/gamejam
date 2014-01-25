@@ -11,7 +11,12 @@ Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Unit
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading F:\Developement\Unity Projects\gamejam\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.039 seconds
+- Completed reload, in  0.035 seconds
 desktop: 1680x1050 60Hz; virtual: 3120x1050 at -1440,0
 <RI> Initializing input.
 <RI> Input initialized.
+Level 'Level1' (-1) couldn't be loaded because it has not been added to the build settings.
+To add a level to the build settings use the menu File->Build Settings...
+ 
+(Filename:  Line: 292)
+
