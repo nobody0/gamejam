@@ -4,8 +4,8 @@
     <Files>
       <File FileName="Assets\scripts\Player.cs" Line="125" Column="2" />
       <File FileName="Assets\scripts\GameModel.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\Game.cs" Line="14" Column="47" />
-      <File FileName="Assets\scripts\Networking.cs" Line="22" Column="7" />
+      <File FileName="Assets\scripts\Game.cs" Line="52" Column="11" />
+      <File FileName="Assets\scripts\Networking.cs" Line="5" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

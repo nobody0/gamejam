@@ -8,7 +8,7 @@ public class Game : MonoBehaviour {
 
 		if (Network.isServer || Network.isClient) {
 			
-			//enableLevel ();
+			enableLevel ();
 
 			GameObject PlayerPref = (GameObject)Resources.Load("Player");
 
@@ -41,13 +41,26 @@ public class Game : MonoBehaviour {
 	}
 
 	void enableLevel () {
+		string levelName;
 		GameObject level;
+
 		if (GameModel.PlayerId == 1) {
-			level = GameObject.Find("Level_Sommer");
+			levelName = "Level_Sommer";
 		} else {
-			level = GameObject.Find("Level_Winter");
+			levelName = "Level_Winter";
 		}
-		if (level)
-		level.SetActive(true);
+
+		/*
+		var objectsInScene = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+		for (int i = 0; i < objectsInScene.Length; i++) {
+			if (objectsInScene[i].name.Equals(levelName)) {
+				level = (GameObject) objectsInScene[i];
+				break;
+			}
+		}//*/
+		
+		level = (GameObject)Resources.Load(levelName);
+		Instantiate(level);
+		//level.SetActive(true);
 	}
 }

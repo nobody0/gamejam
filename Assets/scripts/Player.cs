@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	
 	private float ipDeltaTime = 0.1f;
 	
-	private Vector3 cameraOffset = new Vector3(-4, 3, -7);
+	public Vector3 cameraOffset = new Vector3(-4, 3, -7);
 	private float cameraFollow =  10;
 	private float cameraFollowJump =  5;
 	//public Vector3 cameraOffsetRot = new Vector3(20,30,5);
