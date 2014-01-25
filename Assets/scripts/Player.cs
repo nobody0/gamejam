@@ -10,12 +10,10 @@ public class Player : MonoBehaviour {
 	private CharacterController controller;
 	
 	private float gravity = 10;
-	private float speed = 5;
-	private float jumpSpeed = 5;
+	public float speed = 5;
+	public float jumpSpeed = 5;
 	private float jumpVelocity = 0;
-
-	private int lineIndex;
-	private float[] Lines = {2, 9, 16};
+	public float waterfloating = 8;
 	
 	private float lastSync = 0.0f;
 	private Vector3 lastSyncedPos;
@@ -31,6 +29,16 @@ public class Player : MonoBehaviour {
 
 	private List<Vector3> positions = new List<Vector3>();
 	private List<float> times = new List<float>();
+
+	private bool inWater;
+	public bool isInWater {
+		set {
+			this.inWater = value;
+		}
+		get {
+			return this.inWater;
+		}
+	}
 	
 	void Start () {
 		controller = GetComponent<CharacterController>();
@@ -47,44 +55,32 @@ public class Player : MonoBehaviour {
 			Vector3 moveDirection = Vector3.zero;
 			// save old position!
 			
-			if (controller.isGrounded) {
+			if (controller.isGrounded) { // on ground
 				jumpVelocity = 0;
 				if (Input.GetButton("Jump")) {
 					jumpVelocity = jumpSpeed;
 				}
 			}
+			
+			if (this.inWater) { // on water
+				if (jumpVelocity < -15)
+					jumpVelocity = jumpVelocity / 2;
+
+				if (Input.GetButton("Jump")) {
+					jumpVelocity = jumpSpeed;
+				}
+				
+				if (jumpVelocity < 0)
+				jumpVelocity += waterfloating * Time.deltaTime;
+			}
+
 			jumpVelocity -= gravity * Time.deltaTime;
+
 			moveDirection.y = jumpVelocity * Time.deltaTime;
 			
 			moveDirection.x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
 			moveDirection.z = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 
-			/*
-			if (Input.GetButtonDown("Vertical")) {
-				if (Input.GetAxis("Vertical") > 0) {
-					lineIndex ++;
-					if (lineIndex >= Lines.Length) {
-						lineIndex = Lines.Length - 1;
-					}
-				} else {
-					lineIndex--;
-					if (lineIndex < 0) {
-						lineIndex = 0;
-					}
-				}
-			}
-
-			float diffZ = Lines[lineIndex] - transform.position.z;
-
-			moveDirection.z = speed * Time.deltaTime;
-
-			if (diffZ < 0) {
-				moveDirection.z *= -1;
-			}
-			if (moveDirection.z / diffZ > 1) {
-				moveDirection.z = diffZ;
-			}
-			//*/
 			controller.Move(moveDirection);
 
 			updateCamera();
