@@ -25,4 +25,11 @@ public class IceBlock : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerExit(Collider other) {
+		if (inPlace && other.name.Equals("EisblockBlocker")) {
+			Game game = Camera.main.GetComponent<Game>();
+			game.onIceblockInplace(id);
+		}
+	}
+
 }
