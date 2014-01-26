@@ -198,7 +198,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.name == "GiantCubeOfDeath") {
+		if (other.name == "GiantCubeOfDeath" || other.name == "Terrain_Sommer" || other.name == "Terrain_Winter") {
 			die ();
 		}
 
@@ -206,6 +206,16 @@ public class Player : MonoBehaviour {
 			GameModel.lastCheckpoint = other.transform.position;
 			if (playerId == GameModel.Characters.Summer) {
 				GameModel.lastCheckpoint.z += 2;
+			}
+		}
+
+		if (other.name == "Knospe") {
+			BudTrigger bud = other.GetComponent<BudTrigger> ();
+			if (!bud.isActivated) {
+				// TODO make trigger event
+				//Debug.Log("blib");
+				bud.isActivated = true;
+				bud.collider.enabled = false;
 			}
 		}
 	}

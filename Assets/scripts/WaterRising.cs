@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DaylightWater : MonoBehaviour {
+public class WaterRising : MonoBehaviour {
 	public bool rise = false;
 	public float originY = -10;
 	public float targetY = -5;

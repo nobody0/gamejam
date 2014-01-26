@@ -5,9 +5,15 @@ using System.Collections;
 public class Game : MonoBehaviour {
 
 	private bool started = false;
-	public DaylightWater risingDaylightWater;
+	public WaterRising risingDaylightWater;
+
+	public TwineGrowth ranke_5;
 
 	public string chat = "hallo welt";
+
+	public string message;
+	public bool showMessage = false;
+	public bool messageReturn;
 
 	// Use this for initialization
 	void Start () {
@@ -25,9 +31,9 @@ public class Game : MonoBehaviour {
 		enableLevel ();
 		
 		GameObject PlayerPref = (GameObject)Resources.Load("Player");
-		Vector3 startPosition = new Vector3(0, 0, 0);
+		Vector3 startPosition = new Vector3(145,0,9);//Vector3.zero;
 		if (GameModel.PlayerId == GameModel.Characters.Summer) {
-			startPosition.z = 2;
+			startPosition.z += 2;
 		}
 		GameObject player = (GameObject)Network.Instantiate(PlayerPref, startPosition, Quaternion.identity, 0);
 		
@@ -68,6 +74,12 @@ public class Game : MonoBehaviour {
 			string chatinput = GUI.TextField(new Rect(50, 1100, 25, 400), "");
 			networkView.RPC("updateChat", RPCMode.All, chatinput, (int)GameModel.PlayerId);
 		}
+
+		if (showMessage) {
+			if (GUI.Button(new Rect(200, 100, 200, 50), message)) {
+				messageReturn = true;
+			}
+		}
 	}
 
 	void enableLevel () {
@@ -93,6 +105,18 @@ public class Game : MonoBehaviour {
 	public void onIceblockInplace(int iceblockId) {
 		if (iceblockId == 1) {
 			networkView.RPC("riseDayLightWater", RPCMode.Others);
+		}
+	}
+
+	
+	[RPC]
+	public void ranke5Grow() {
+		ranke_5.appear();
+	}
+	
+	public void onRankeGrow(int rankeId) {
+		if (rankeId == 5) {
+			networkView.RPC("ranke5Grow", RPCMode.Others);
 		}
 	}
 
