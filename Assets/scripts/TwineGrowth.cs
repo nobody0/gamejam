@@ -47,7 +47,7 @@ public class TwineGrowth : MonoBehaviour {
 	}
 
 	public void appear () {
-		
+		Debug.Log(RankeId + " called appear");
 		transform.localScale = Vector3.one;
 		transform.position = endPosition;
 		growing = false;

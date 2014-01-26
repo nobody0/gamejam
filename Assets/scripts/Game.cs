@@ -114,13 +114,17 @@ public class Game : MonoBehaviour {
 	public void ranke5Grow() {
 		ranke_5.appear();
 	}
+	[RPC]
+	public void ranke6Grow() {
+		ranke_6.appear();
+	}
 	
 	public void onRankeGrow(int rankeId) {
 		if (rankeId == 5) {
 			networkView.RPC("ranke5Grow", RPCMode.Others);
 		}
 		if (rankeId == 6) {
-			networkView.RPC("ranke5Grow", RPCMode.Others);
+			networkView.RPC("ranke6Grow", RPCMode.Others);
 		}
 	}
 

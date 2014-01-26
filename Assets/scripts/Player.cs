@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	private CharacterController controller;
 	
 	private float gravity = 10;
-	private float speed = 5;
+	public float speed = 5;
 	public float jumpSpeed = 8;
 	private float jumpVelocity = 0;
 	private float waterfloating = 8;
