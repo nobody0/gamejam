@@ -193,8 +193,6 @@ public class Player : MonoBehaviour {
 				slidingDirection.z =  colliderNormal.z*Time.deltaTime * speed;
 				
 				controller.Move(slidingDirection);
-				//Debug.Log(hit.normal + " " + slidingDirection);
-				//controller.Move(new Vector3(hit.normal.x*Time.deltaTime * speed/2, 0, hit.normal.x*Time.deltaTime * speed/2));
 			} 
 		}
 	}
@@ -206,6 +204,9 @@ public class Player : MonoBehaviour {
 
 		if (other.name == "CheckPoint") {
 			GameModel.lastCheckpoint = other.transform.position;
+			if (playerId == GameModel.Characters.Summer) {
+				GameModel.lastCheckpoint.z += 2;
+			}
 		}
 	}
 
