@@ -27,7 +27,8 @@ public class Game : MonoBehaviour {
 		enableLevel ();
 		
 		GameObject PlayerPref = (GameObject)Resources.Load("Player");
-		Vector3 startPosition = new Vector3(145,0,9);//Vector3.zero;
+		//Vector3 startPosition = new Vector3(262,9,-10); //new Vector3(145,0,9);
+		Vector3 startPosition = Vector3.zero;
 		if (GameModel.PlayerId == GameModel.Characters.Summer) {
 			startPosition.z += 2;
 		}
