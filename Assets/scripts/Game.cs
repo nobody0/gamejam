@@ -10,12 +10,6 @@ public class Game : MonoBehaviour {
 	public TwineGrowth ranke_5;
 	public TwineGrowth ranke_6;
 
-	public string chat = "hallo welt";
-
-	public string message;
-	public bool showMessage = false;
-	public bool messageReturn;
-
 	// Use this for initialization
 	void Start () {
 		if (Network.isServer) {
@@ -62,26 +56,6 @@ public class Game : MonoBehaviour {
 			Application.LoadLevel("Start");
 		}
 	}
-	
-	void OnGUI() {
-		GUI.Button(new Rect(100, 100, 100, 25), " " + GameModel.PlayerId);
-		GUI.Button(new Rect(100, 125, 100, 25), " " + chat);
-
-		GUI.Label(new Rect(50, 700, 700, 400), chat);
-		
-		
-		if (Input.GetKey(KeyCode.KeypadEnter)) {
-			Debug.Log("chat!!");
-			string chatinput = GUI.TextField(new Rect(50, 1100, 25, 400), "");
-			networkView.RPC("updateChat", RPCMode.All, chatinput, (int)GameModel.PlayerId);
-		}
-
-		if (showMessage) {
-			if (GUI.Button(new Rect(200, 100, 200, 50), message)) {
-				messageReturn = true;
-			}
-		}
-	}
 
 	void enableLevel () {
         if (GameModel.PlayerId == GameModel.Characters.Summer) {
@@ -109,7 +83,6 @@ public class Game : MonoBehaviour {
 		}
 	}
 
-	
 	[RPC]
 	public void ranke5Grow() {
 		ranke_5.appear();
