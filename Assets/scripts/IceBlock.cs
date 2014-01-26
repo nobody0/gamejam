@@ -20,6 +20,7 @@ public class IceBlock : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) {
 		if (other.name.Equals("EisblockBlocker")) {
+			Debug.Log("blocker");
 			if (!inPlace) inPlace = true;
 			this.transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
 		}

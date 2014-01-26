@@ -20,6 +20,10 @@ public class TwineGrowth : MonoBehaviour {
 		if (RankeId == 6){
 			Camera.main.GetComponent<Game>().ranke_6 = this;
 		}
+		
+		if (RankeId == 7){
+			Camera.main.GetComponent<Game>().ranke_7 = this;
+		}
 		endPosition = transform.position;
 		transform.position = transform.position - startTransform;
 		transform.localScale = startScale*Vector3.one;

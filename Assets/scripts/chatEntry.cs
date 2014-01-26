@@ -24,7 +24,7 @@ public class chatEntry {
         {
             return "Irene";
         }
-        else if (sender == GameModel.Characters.Summer)
+        else if (sender == GameModel.Characters.Winter)
         {
             return "Zack";
         }
