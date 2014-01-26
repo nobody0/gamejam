@@ -14,17 +14,19 @@ public class TwineGrowth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (RankeId == 5)
+		if (RankeId == 5){
 			Camera.main.GetComponent<Game>().ranke_5 = this;
+		}
+		if (RankeId == 6){
+			Camera.main.GetComponent<Game>().ranke_6 = this;
+		}
 		endPosition = transform.position;
 		transform.position = transform.position - startTransform;
 		transform.localScale = startScale*Vector3.one;
-		Debug.Log(transform.position + " " + endPosition);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (transform.position);
 		if (growing) {
 			
 			appear ();

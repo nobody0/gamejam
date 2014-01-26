@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	
 	private float gravity = 10;
 	private float speed = 5;
-	private float jumpSpeed = 5;
+	public float jumpSpeed = 8;
 	private float jumpVelocity = 0;
 	private float waterfloating = 8;
 	
@@ -216,6 +216,15 @@ public class Player : MonoBehaviour {
 				//Debug.Log("blib");
 				bud.isActivated = true;
 				bud.collider.enabled = false;
+			}
+		}
+
+		if (other.name== "Halteranken") {
+			if (Input.GetButton("Fire1")) {
+				other.GetComponent<BoxCollider>().enabled = false;
+				//other.GetComponentInChildren<BoxCollider>().enabled = false;
+			} else {
+				//other.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 		}
 	}

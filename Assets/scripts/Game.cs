@@ -6,8 +6,9 @@ public class Game : MonoBehaviour {
 
 	private bool started = false;
 	public WaterRising risingDaylightWater;
-
+	
 	public TwineGrowth ranke_5;
+	public TwineGrowth ranke_6;
 
 	public string chat = "hallo welt";
 
@@ -116,6 +117,9 @@ public class Game : MonoBehaviour {
 	
 	public void onRankeGrow(int rankeId) {
 		if (rankeId == 5) {
+			networkView.RPC("ranke5Grow", RPCMode.Others);
+		}
+		if (rankeId == 6) {
 			networkView.RPC("ranke5Grow", RPCMode.Others);
 		}
 	}
