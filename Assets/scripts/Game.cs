@@ -9,6 +9,7 @@ public class Game : MonoBehaviour {
 	
 	public TwineGrowth ranke_5;
 	public TwineGrowth ranke_6;
+	public TwineGrowth ranke_7;
 
 	// Use this for initialization
 	void Start () {
@@ -91,6 +92,10 @@ public class Game : MonoBehaviour {
 	public void ranke6Grow() {
 		ranke_6.appear();
 	}
+	[RPC]
+	public void ranke7Grow() {
+		ranke_7.appear();
+	}
 	
 	public void onRankeGrow(int rankeId) {
 		if (rankeId == 5) {
@@ -99,21 +104,9 @@ public class Game : MonoBehaviour {
 		if (rankeId == 6) {
 			networkView.RPC("ranke6Grow", RPCMode.Others);
 		}
+		if (rankeId == 7) {
+			networkView.RPC("ranke7Grow", RPCMode.Others);
+		}
 	}
 
-	[RPC]
-	public void updateChat(string chatinput, int playerId) {
-		string name;
-		GameModel.Characters pId = (GameModel.Characters) playerId;
-		if (pId == GameModel.PlayerId) {
-			name = "me";
-		} else {
-			if (pId == GameModel.Characters.Summer) {
-				name = "Irene";
-			} else {
-				name = "Zack";
-			}
-		}
-		chat = name + ": " + chatinput;
-	}
 }
