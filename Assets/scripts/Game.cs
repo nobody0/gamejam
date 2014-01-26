@@ -55,27 +55,13 @@ public class Game : MonoBehaviour {
 	}
 
 	void enableLevel () {
-		string levelName;
-		GameObject level;
-
-		if (GameModel.PlayerId == GameModel.Characters.Summer) {
-			levelName = "Level_Sommer";
-		} else {
-			levelName = "Level_Winter";
+        if (GameModel.PlayerId == GameModel.Characters.Summer) {
+            Instantiate((GameObject)Resources.Load("Level_Sommer"));
+            Instantiate((GameObject)Resources.Load("GUI_Sommer"));
+        } else {
+            Instantiate((GameObject)Resources.Load("Level_Winter"));
+            Instantiate((GameObject)Resources.Load("GUI_Winter"));
 		}
-
-		/*
-		var objectsInScene = Resources.FindObjectsOfTypeAll(typeof(GameObject));
-		for (int i = 0; i < objectsInScene.Length; i++) {
-			if (objectsInScene[i].name.Equals(levelName)) {
-				level = (GameObject) objectsInScene[i];
-				break;
-			}
-		}//*/
-		
-		level = (GameObject)Resources.Load(levelName);
-		Instantiate(level);
-		//level.SetActive(true);
 	}
 
 	[RPC]
