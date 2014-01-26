@@ -7,8 +7,6 @@ public class Game : MonoBehaviour {
 	private bool started = false;
 	public DaylightWater risingDaylightWater;
 
-	public string chat = "hallo welt";
-
 	// Use this for initialization
 	void Start () {
 		if (Network.isServer) {
@@ -55,20 +53,6 @@ public class Game : MonoBehaviour {
 			Application.LoadLevel("Start");
 		}
 	}
-	
-	void OnGUI() {
-		GUI.Button(new Rect(100, 100, 100, 25), " " + GameModel.PlayerId);
-		GUI.Button(new Rect(100, 125, 100, 25), " " + chat);
-
-		GUI.Label(new Rect(50, 700, 700, 400), chat);
-		
-		
-		if (Input.GetKey(KeyCode.KeypadEnter)) {
-			Debug.Log("chat!!");
-			string chatinput = GUI.TextField(new Rect(50, 1100, 25, 400), "");
-			networkView.RPC("updateChat", RPCMode.All, chatinput, (int)GameModel.PlayerId);
-		}
-	}
 
 	void enableLevel () {
         if (GameModel.PlayerId == GameModel.Characters.Summer) {
@@ -94,21 +78,5 @@ public class Game : MonoBehaviour {
 		if (iceblockId == 1) {
 			networkView.RPC("riseDayLightWater", RPCMode.Others);
 		}
-	}
-
-	[RPC]
-	public void updateChat(string chatinput, int playerId) {
-		string name;
-		GameModel.Characters pId = (GameModel.Characters) playerId;
-		if (pId == GameModel.PlayerId) {
-			name = "me";
-		} else {
-			if (pId == GameModel.Characters.Summer) {
-				name = "Irene";
-			} else {
-				name = "Zack";
-			}
-		}
-		chat = name + ": " + chatinput;
 	}
 }
