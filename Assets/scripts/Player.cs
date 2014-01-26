@@ -10,8 +10,8 @@ public class Player : MonoBehaviour {
 	private CharacterController controller;
 	
 	private float gravity = 10;
-	private float speed = 5;
-	private float jumpSpeed = 5;
+	public float speed = 5;
+	public float jumpSpeed = 8;
 	private float jumpVelocity = 0;
 	private float waterfloating = 8;
 	
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.name == "GiantCubeOfDeath") {
+		if (other.name == "GiantCubeOfDeath" || other.name == "Terrain_Sommer" || other.name == "Terrain_Winter") {
 			die ();
 		}
 
@@ -206,6 +206,25 @@ public class Player : MonoBehaviour {
 			GameModel.lastCheckpoint = other.transform.position;
 			if (playerId == GameModel.Characters.Summer) {
 				GameModel.lastCheckpoint.z += 2;
+			}
+		}
+
+		if (other.name == "Knospe") {
+			BudTrigger bud = other.GetComponent<BudTrigger> ();
+			if (!bud.isActivated) {
+				// TODO make trigger event
+				//Debug.Log("blib");
+				bud.isActivated = true;
+				bud.collider.enabled = false;
+			}
+		}
+
+		if (other.name== "Halteranken") {
+			if (Input.GetButton("Fire1")) {
+				other.GetComponent<BoxCollider>().enabled = false;
+				//other.GetComponentInChildren<BoxCollider>().enabled = false;
+			} else {
+				//other.GetComponentInChildren<BoxCollider>().enabled = true;
 			}
 		}
 	}
